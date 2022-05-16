@@ -19,3 +19,4 @@ Route::get('/',[App\Http\Controllers\CustomerController::class,'index']);
 Route::get('/show/{customer}',[App\Http\Controllers\CustomerController::class,'show']);
 Route::get('/update/{customer}',[App\Http\Controllers\CustomerController::class,'update']);
 Route::get('/delete/{customer}',[App\Http\Controllers\CustomerController::class,'destroy']);
+Route::get('/scan',[App\Http\Controllers\ScanController::class,'scan']);
