@@ -10,17 +10,23 @@ class CustomerRepository
         return Customer::orderBy('name')
         ->where('active',1)->get()
         ->map(function($customer){
-            return [
-                'customer_id'=>$customer->id,
-                'name'=>$customer->name,
-                'email'=>$customer->user->email,
-                'last_contacted'=>$customer->user->contacted_at
-            ];
+            return $this->format($customer);
         });
     }
 
     public function findById($customerId){
-        return Customer::find($customerId);
+        $customer = Customer::where('id',$customerId)->with('user')->first();
+        return $this->format($customer);
+
+    }
+
+    protected function format($customer){
+        return [
+            'customer_id'=>$customer->id,
+            'name'=>$customer->name,
+            'email'=>$customer->user->email,
+            'last_contacted'=>$customer->user->contacted_at
+        ];
     }
 
 }
