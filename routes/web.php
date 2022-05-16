@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[App\Http\Controllers\CustomerController::class,'index']);
+
+
+Route::get('/show/{customer}',[App\Http\Controllers\CustomerController::class,'show']);
